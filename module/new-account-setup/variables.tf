@@ -69,11 +69,6 @@ variable "subnet_definition" {
   }))
 }
 
-variable "nacl_subnet_ids" {
-  description = "A list of Subnet IDs to apply the ACL to."
-  type        = list(string)
-}
-
 variable "nacl_ingress_definition" {
   description = "A list of objects containing the NACL ingress definitions."
   type = list(object({
