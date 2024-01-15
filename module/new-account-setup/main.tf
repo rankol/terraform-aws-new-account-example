@@ -55,9 +55,12 @@ resource "aws_subnet" "subnet" {
 # CUSTOM NACL
 #------------
 
+// THIS WOULD BE USED TO APPLY A COMMON NACL TO ALL SUBNETS IN THE
+// aws_subnet RESOURCE DUE TO RESOURCE REFERENCE IN subnet_ids
+
 resource "aws_network_acl" "nacl" {
   vpc_id     = aws_vpc.vpc.id
-  subnet_ids = var.nacl_subnet_ids
+  subnet_ids = aws_subnet.subnet.*.id
   tags       = local.common_tags
 
   dynamic "ingress" {
